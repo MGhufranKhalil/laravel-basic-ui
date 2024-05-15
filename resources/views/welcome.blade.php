@@ -39,8 +39,7 @@
                     <label class="form-label d-flex justify-content-between">Password <a href="#">Forgot password?</a></label>
                     <input type="password" class="form-control" name="password" placeholder="Enter your password" required>
                 </div>
-                {{-- <button class="btn btn-primary btn-sign" type="submit">Sign In</button> --}}
-                <a class="btn btn-primary btn-sign" href="{{ route('dashboard')}}">Sign In</a>
+                <button class="btn btn-primary btn-sign" type="submit">Sign In</button>
             </form>
         </div><!-- card-body -->
         <div class="card-footer">

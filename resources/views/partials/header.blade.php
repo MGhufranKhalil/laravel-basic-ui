@@ -15,7 +15,7 @@
                 <h5 class="mb-1 text-dark fw-semibold">{{ Auth::user()->name ?? '' }}</h5>
                 <nav class="nav">
                     <!-- <a href=""><i class="ri-user-settings-line"></i> Account Settings</a> -->
-    			<a href="#"><i class="ri-logout-box-r-line"></i> Logout </a>
+    			<a href="{{ route('logout') }}"><i class="ri-logout-box-r-line"></i> Logout </a>
                 </nav>
             </div><!-- dropdown-menu-body -->
         </div><!-- dropdown-menu -->

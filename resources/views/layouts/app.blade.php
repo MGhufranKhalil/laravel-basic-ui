@@ -31,17 +31,12 @@
 </head>
 
 <body>
-    @yield('sidebar')
-
     @yield('header')
-
-
+    @yield('sidebar')
     @yield('content')
 
-
-
     <div class="main-footer text-center">
-        <span class="text-center">&copy; 2023. Salonist. All Rights Reserved.</span>
+        <span class="text-center">&copy; 2024. MGK. All Rights Reserved.</span>
     </div>
     <!-- main-footer -->
     <script src="{{ asset('asset/lib/jquery/jquery.min.js') }}"></script>

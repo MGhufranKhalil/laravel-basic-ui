@@ -10,13 +10,6 @@
 <div class="main main-app p-3 p-lg-4">
     <p>
         Welcome to  <strong>{{$login->user_name ?? ''}} </strong>! </p>
-    <p>Salonist, the premier booking system for efficient 
-    appointment management! With our app, you can seamlessly synchronize 
-    your Shopify bookings, product orders, and inventory management into a 
-    single CRM, providing you with a comprehensive and unified solution for 
-    managing your entire business system.
-    </p>
-    
     
     {{-- <a class="btn btn-success float-end" id="syncLink" href="{{ URL::tokenRoute('sync.all') }}">Sync</a> --}}
 
