@@ -16,14 +16,8 @@ return new class extends Migration
         Schema::create('cities', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('city_longi');
-            $table->string('city_lati');
-            $table->integer('order');
-            $table->string('image')->nullable();
-            $table->tinyInteger('is_hotel');
-            $table->tinyInteger('is_rent');
-            $table->tinyInteger('is_tour');
             $table->integer('state_id')->nullable();
+            $table->integer('country_id')->nullable();
             $table->timestamps();
         });
     }
