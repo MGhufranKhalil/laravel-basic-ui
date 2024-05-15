@@ -1,0 +1,513 @@
+h2{
+    color:pink !important
+}
+.service-card{
+    width:100%;
+    height:70px;
+    text-align:left
+}
+.time-card{
+    width:20%;
+    height:50px;
+}
+
+.brands-card {
+    -webkit-box-pack: justify!important;
+    -ms-flex-pack: justify!important;
+    justify-content: flex-start!important;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal!important;
+    -webkit-box-direction: normal!important;
+    -ms-flex-direction: row!important;
+    flex-direction: row!important;
+    -webkit-box-align: center!important;
+    -ms-flex-align: center!important;
+    align-items: center!important;
+    box-shadow: 0 0 10px rgba(0,0,0,0.12);
+    -webkit-box-shadow: 0 0 10px rgba(0,0,0,0.12);
+    padding: 5px 12px;
+    background: #fff;
+    margin-bottom: 18px;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 0 !important;
+}
+
+.brands-card:after {
+    display: none;
+}
+
+.staff-card:after {
+    display: none;
+}
+
+.product-popup-modal__content-info>* {
+    font-size: 17px;
+    font-weight: 600;
+    color: #111;
+    margin-bottom: 20px !important;
+}
+
+.service_info {
+    min-width: 60px;
+    max-width: inherit;
+    text-align: left;
+    padding-left: 0px;
+    margin-left: 15px;
+}
+
+.card-icon {
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+    min-height: 32px;
+    margin-right: 20px;
+    background: url(https://stellenapps.com/Salonist/images/tick.svg) no-repeat center;
+    background-size: cover;
+    position: absolute;
+    right: 0;
+}
+
+.selected-staff .card-icon {
+    background-image: url(https://stellenapps.com/Salonist/images/tick-fill.svg);
+    background-size: cover;
+}
+
+.staff-selected {
+    background-image: url(https://stellenapps.com/Salonist/images/tick-fill.svg) !important;
+    background-size: cover !important;
+}
+
+.product-popup-modal__content-info {
+    padding-right: 0 !important;
+}
+
+.product-popup-modal__content {
+    width: 600px !important;
+    border-radius: 10px;
+}
+
+.staff-pic img {
+    width: 45px;
+    height: 45px;
+    object-fit: cover;
+    border-radius: 100px;
+    -webkit-border-radius: 100px;
+}
+
+.staff-pic {
+    position: relative;
+    width: 45px;
+    height: 45px;
+    margin-right: 25px;
+    border-radius: 100px;
+    -webkit-border-radius: 100px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.staff-card {
+    -webkit-box-pack: justify!important;
+    -ms-flex-pack: justify!important;
+    justify-content: flex-start!important;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal!important;
+    -webkit-box-direction: normal!important;
+    -ms-flex-direction: row!important;
+    flex-direction: row!important;
+    -webkit-box-align: center!important;
+    -ms-flex-align: center!important;
+    align-items: center!important;
+    box-shadow: 0 0 10px rgba(0,0,0,0.12);
+    -webkit-box-shadow: 0 0 10px rgba(0,0,0,0.12);
+    padding: 5px 12px;
+    background: #fff;
+    margin-bottom: 18px;
+    cursor: pointer;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    width: 100%;
+
+}
+
+.staff-card .card-icon {
+    /* background: #f0f2f4; */
+    border-radius: 100px;
+    -webkit-border-radius: 100px;
+}
+
+.card-icon {
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+    min-height: 32px;
+    margin-right: 20px;
+    background: url(https://stellenapps.com/Salonist/images/tick.svg) no-repeat center;
+    background-size: cover;
+}
+
+/*  */
+
+/* .calender_view{width:100%;box-shadow:0 0 10px rgba(0,0,0,0.12);-webkit-box-shadow:0 0 10px rgba(0,0,0,0.12);padding:18px;} */
+.calender_view {
+    width:100%;
+    padding:0px;
+}
+.calender_view .ui-datepicker.ui-widget-content {
+    background: transparent;
+    width:100%;
+    position:static;
+    border:0
+}
+.calender_view .ui-datepicker-calendar {
+    width:100%;
+    text-align:center
+}
+.calender_view .ui-datepicker thead,.calender_view .ui-datepicker th {
+    background:transparent
+}
+.calender_view .ui-datepicker-calendar thead th span {
+    display:block;
+    border:1px solid #f2f2f2;
+    border-radius:9px;
+    -webkit-border-radius:9px;
+    margin:5px 2px;
+    font-weight: 600;
+    padding: 3px 6px;
+    font-size: 14px;
+    color: #000;
+    background: #eee;
+}
+.calender_view .ui-datepicker td {
+    background:#ffffff;
+}
+.calender_view .ui-widget-content .ui-state-default {
+    text-decoration:none;
+    background:transparent;
+    color:#000;
+    padding: 2px;
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    max-width: 38px;
+    margin: auto;
+    height: 38px;
+    line-height: 35px;
+    border-radius: 50%;
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border: 1px solid #cccccc;
+}
+.ui-state-default:hover {
+    border: 1px solid #cccccc;
+}
+.calender_view .ui-widget-content .ui-state-default.ui-state-highlight,.calender_view .ui-widget-content .ui-state-default.ui-state-highlight.ui-state-active {
+    background:#169957;
+    border:0;
+    color:#fff;
+}
+.calender_view .ui-widget-content .ui-state-default.ui-state-active{
+    background:#FFBD00;
+    border:0;
+    color:#000000;
+}
+.calender_view .ui-datepicker .ui-widget-header {
+    text-align:center;
+    border:0;
+    background:transparent;
+    padding-bottom: 15px;
+    color:#000
+}
+.calender_view .ui-datepicker .ui-datepicker-prev {
+    float: left;
+    line-height: 2.5rem;
+    background: #149957;
+    width: 35px;
+    height: 22px;
+    padding-top: 5px;
+    border-radius: 25px;
+    cursor: pointer;
+}
+.calender_view .ui-datepicker .ui-datepicker-next {
+    float: right;
+    background:#149957;
+    width: 35px;
+    height: 22px;
+    padding-top: 5px;
+    border-radius: 25px;
+    cursor: pointer;
+}
+.calender_view.fa-angle-left{}
+.calender_view .ui-datepicker .ui-datepicker-prev span,.calender_view .ui-datepicker .ui-datepicker-next span {
+    /*background: none; text-indent: 0;*/
+    display: flex;
+    justify-content: center;
+}
+.calender_view .ui-datepicker tbody tr {
+    border-top: 1px solid #ddd;
+}
+a.ui-datepicker-prev.ui-corner-all.ui-state-disabled {
+    background: gray !important;
+    cursor: no-drop;
+}
+.calender_view .ui-widget-header .ui-icon {
+    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTT7aKN6bDqxtpABnnpfesyuN6wnwbaJ9LIb0DnJbz7KhAObNY&s');
+    background-size: 16px 16px;
+    background-repeat: no-repeat;
+}
+
+.calender_view .ui-icon-circle-triangle-e {
+    opacity: 0;
+}
+
+.calender_view .ui-icon-circle-triangle-w {
+    opacity: 0;
+}
+
+.calender_view .ui-datepicker-buttonpane.ui-widget-content {
+    display: none;
+}
+
+.time-section:after {
+    display: none;
+}
+
+.time-section {
+    color: #4f4f4f;
+    display: inline-block;
+    border: 1px solid #4f4f4f;
+    position: relative;
+    cursor: pointer;
+    margin: 5px 5px 5px 0px;
+    font-size: 13px;
+    padding: 5px 8px;
+    border-radius: 8px;
+    line-height: 1.2;
+    min-width: 75px !important;
+    min-height: 20px !important;
+}
+
+.product-popup-modal__content-info>* {
+    display: inline-block;
+}
+
+.active {
+    background: /*#4f4f4f*/ rgba(0,0,0,0.26) !important;
+    border-radius: 8px !important;
+}
+
+#save_booking {
+    width: 100% !important;
+}
+
+#save_booking:after {
+    border-radius: 8px;
+}
+
+.ui-state-disabled span {
+    opacity: .35;
+}
+
+.ui-state-disabled span {
+    opacity: .35;
+    border-radius: 50% !important;
+    border: 1px solid #cccccc;
+}
+
+/* .selected-staff .card-icon {
+    background-image: url(https://stellenapps.com/Salonist/images/tick-fill.svg);
+    background-size: cover;
+} */
+
+a.ui-datepicker-next.ui-corner-all:after {
+    content: "";
+    background-image: url(https://static.thenounproject.com/png/1920905-200.png);
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 121px;
+    right: 40px;
+    width: 14px;
+    height: 16px;
+    background-size: contain;
+    filter: invert(1);
+}
+
+a.ui-datepicker-prev.ui-corner-all.ui-state-disabled:after {
+    content: "";
+    background-image: url(https://cdn-icons-png.flaticon.com/512/271/271220.png);
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 121px;
+    left: 40px;
+    width: 14px;
+    height: 16px;
+    background-size: contain;
+    filter: invert(1);
+}
+
+a.ui-datepicker-prev.ui-corner-all:after {
+    content: "";
+    background-image: url(https://cdn-icons-png.flaticon.com/512/271/271220.png);
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 121px;
+    left: 40px;
+    width: 14px;
+    height: 16px;
+    background-size: contain;
+    filter: invert(1);
+}
+
+.custom-close-icon {
+    position: relative !important;
+}
+
+
+span#branch_modal {
+    width: 100%;
+    padding: 0px;
+    margin-top: 2px;
+}
+
+.time-picker-custom label {
+    color: #4f4f4f;
+    border: 1px solid #4f4f4f;
+    position: relative;
+    cursor: pointer;
+    margin: 3px;
+    font-size: 12px;
+    padding: 5px 8px;
+    border-radius: 8px;
+    line-height: 1.2;
+    display: inline-block;
+    width: 83px;
+    text-align: center;
+    font-weight: 400;
+    font-size: 13px;
+}
+
+.time-picker-custom label input[type="radio"] {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 3;
+    opacity: 0;
+    visibility: hidden;
+    left: 0;
+    top: 0;
+}
+
+.time-picker-custom label input[type="radio"]:checked + .check_icon {
+    width: 100%;
+    height: 100%;
+    display: block;
+    background-size: 16px;
+    margin-top: 4px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    margin: 0 auto;
+    background: rgba(0,0,0,0.26) !important;
+}
+
+/* Loader */
+.loader {
+    border: 6px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 6px solid #3498db;
+    width: 50px;
+    height: 50px;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+    left: 49%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+}
+
+.blkshadow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    display: none;
+}
+
+@-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.backdrops {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+@media(max-width: 767px) {
+    .product-popup-modal__content {
+        width: 100% !important;
+    }
+    a.ui-datepicker-next.ui-corner-all:after {
+        top: 91px;
+        right: 26px;
+    }
+    .product-popup-modal__content {
+        padding: 0 1.5rem 0 1.5rem !important;
+    }
+    a.ui-datepicker-prev.ui-corner-all.ui-state-disabled:after {
+        left: 25px;
+    }
+    .calender_view .ui-datepicker-calendar {
+        margin: auto;
+    }
+    a.ui-datepicker-prev.ui-corner-all:after {
+        left: 25px;
+    }
+    .blkshadow {
+        height: 100vh;
+    }
+    .loader {
+        left: 45%;
+    }
+}
+
+#back_button {
+    position: absolute;
+    background-color: rgb(var(--color-background));
+    border: 0.1rem solid rgba(var(--color-foreground),.1);
+    border-radius: 50%;
+    color: rgba(var(--color-foreground),.55);
+    display: flex;
+    cursor: pointer;
+    padding: 1.1rem;
+    z-index: 2;
+    top: 1.5rem;
+    width: 4rem;
+}
+
+.product-popup-modal__content-info {
+    margin-top: 30px;
+}
