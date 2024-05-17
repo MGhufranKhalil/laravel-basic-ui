@@ -21,8 +21,16 @@
     <link rel="stylesheet" href="{{ asset('asset/lib/remixicon/fonts/remixicon.css') }}">
 
     <!-- Template CSS -->
+
     <link rel="stylesheet" href="{{ asset('asset/css/style.min.css') }}">
     <link rel="stylesheet" href="{{ asset('asset/toastr/toastr.css') }}">
+    <script src="{{ asset('asset/lib/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('asset/js/gridjs.min.js') }}"></script>
+    <script src="{{ asset('asset/js/parsley.min.js') }}"></script>
+    
+    
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <script type="text/javascript">
         window.baseURL = {!! json_encode(url('/')) !!}
@@ -39,12 +47,12 @@
         <span class="text-center">&copy; 2024. MGK. All Rights Reserved.</span>
     </div>
     <!-- main-footer -->
-    <script src="{{ asset('asset/lib/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('asset/lib/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('asset/lib/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
 
     <script src="{{ asset('asset/js/script.js') }}"></script>
     <script src="{{ asset('asset/toastr/toastr.min.js') }}"></script>
+
     <script>
         @if (Session::has('success'))
             toastr["success"]('{{ Session::get('success') }}');
@@ -61,7 +69,7 @@
                 toastr["error"]('{{ $error }}');
             @endforeach
         @endif
-
+        
     </script>
     @stack('js')
 </body>

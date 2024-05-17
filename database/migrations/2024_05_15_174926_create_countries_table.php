@@ -17,6 +17,8 @@ return new class extends Migration
             $table->increments('id');
             $table->string('sortname');
             $table->string('name');
+            $table->string('dial_code');
+            $table->string('currency_code');
             $table->timestamps();
         });
     }

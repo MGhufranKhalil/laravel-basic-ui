@@ -1,0 +1,27 @@
+@extends('layouts.app')
+@section('header')
+    @include('partials.header')
+@stop
+@section('sidebar')
+    @include('partials.sidebar')
+@stop
+@section('content')
+    <div class="main main-app p-3 p-lg-4">
+        <div class="card">
+            <div class="card-body">
+                <div>
+                    <h5>Employee: {{ $incident->employee->name }}</h5>
+                    <h5>Location: {{ $incident->location }}</h5>
+                    <h5>Date: {{ \Carbon\Carbon::parse($incident->date)->format('m/d/Y') }}</h5>
+                    <h5>Time: {{ $incident->time }}</h5>
+                    <h5>Description: {{ $incident->details }}</h5>
+                    @foreach ($incident->images as $image)
+                        <a href="{{ asset($image->image) }}"  target="_blank">
+                            <img src="{{ asset($image->image) }}" class="img-fluid" width="100">
+                        </a>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </div>
+@stop

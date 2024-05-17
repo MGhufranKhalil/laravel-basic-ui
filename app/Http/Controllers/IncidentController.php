@@ -1,0 +1,111 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Models\EmployeeIncidentImages;
+use App\Models\EmployeeIncident;
+use App\Models\Employee;
+use DB;
+use Str;
+use Session;
+use Illuminate\Validation\Rule;
+use Carbon\Carbon;
+
+class IncidentController extends Controller
+{
+    private $parentView = 'incident';
+    public function index(){
+        $data = [];
+        $data['incidents'] = EmployeeIncident::all();
+        return view($this->parentView.'.index',$data);
+    }
+
+    public function create(Request $request){
+        $data = [];
+        $data['employees'] = Employee::all();
+        return view($this->parentView.'.create',$data);
+    }
+
+    public function store(Request $request){ 
+        $request->validate([
+            'employee_id' => 'required',
+			'location' => 'required',
+			'date' => 'required',
+			'time' => 'required',
+            'images' => 'required|array',
+            'images.*' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+		
+		DB::beginTransaction();
+        $employeeIncident = EmployeeIncident::create([
+            'employee_id' => $request->employee_id,
+            'location' => $request->location,
+            'date' => Carbon::parse($request->date)->toDateString(),
+            'time' => $request->time,
+            'details' => $request->details
+        ]);
+        if($employeeIncident){
+
+            foreach ($request->file('images') as $image) {
+
+                $imageName = Str::uuid()->toString() . '.' . $image->getClientOriginalExtension();
+                $image->move(public_path('employees/incident_images'), $imageName);
+                $imagePath = 'employees/incident_images/' . $imageName;
+
+                EmployeeIncidentImages::create([
+                    'employee_id' => $request->employee_id,
+                    'emp_incident_id' => $employeeIncident->id,
+                    'image' => $imagePath,
+                ]);
+            }
+        }
+        DB::commit();
+        Session::flash('success', 'Successfully  Create');
+        return redirect()->back();
+		 
+    }
+
+    public function update(Request $request, $id) {
+        $request->validate([
+            'category' => 'required',
+            'location' => 'required',
+            'title' => 'required',
+            'value' => ['required', Rule::unique('incidents')->ignore($id)],
+        ]);
+    
+        $incident = EmployeeIncident::findOrFail($id);
+    
+        $incident->update([
+            'category' => $request->category,
+            'title' => $request->title,
+            'value' => $request->value,
+        ]);
+    
+        Session::flash('success', 'Successfully Updated');
+        return redirect()->back();
+    }
+
+    public function show($id) {
+        $incident = EmployeeIncident::findOrFail($id);
+        return view($this->parentView.'.show', ['incident' => $incident]);
+    }
+
+    public function edit($id) {
+        $data = [];
+        $data['incident'] = EmployeeIncident::findOrFail($id);
+        $data['employees'] = Employee::all();
+
+        return view($this->parentView.'.edit', $data);
+    }
+
+    public function destroy($id)  {
+        $incident = EmployeeIncident::findOrFail($id);
+        
+        $incident->delete();
+        
+        Session::flash('success', 'Incident deleted successfully.');
+        
+        return redirect()->route('incident');
+    }
+}

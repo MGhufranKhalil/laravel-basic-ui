@@ -19,7 +19,7 @@ class CountrySeeder extends Seeder
 
         DB::table('countries')->truncate();
         
-        $statement = "INSERT INTO `countries` (`id`, `sortname`, `name`) VALUES
+        $statement = "INSERT INTO `countries` (`id`, `sortname`, `name`, `dial_code`, `currency_code`) VALUES
             (1, 'AF', 'Afghanistan'),
             (2, 'AL', 'Albania'),
             (3, 'DZ', 'Algeria'),
