@@ -7,6 +7,13 @@
 @stop
 @section('content')
     <div class="main main-app p-3 p-lg-4">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item"><a href="{{ route('option')}}">Option</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Edit</li>
+            </ol>
+        </nav>
         <div class="card">
             <div class="card-body">
                 <form class="row g-3" action="{{ route('option.update', $option->id) }}" method="POST">

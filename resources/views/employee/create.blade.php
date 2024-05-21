@@ -7,12 +7,35 @@
 @stop
 @section('content')
     <div class="main main-app p-3 p-lg-4">
-
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item"><a href="{{ route('employee')}}">Employee</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Create</li>
+            </ol>
+        </nav>
         <div class="card">
             <div class="card-body">
                  
                 <form class="row g-3" action="{{route('employee.store')}}" method="POST" enctype="multipart/form-data" data-parsley-validate>
                     @csrf
+
+                    <div class="col-md-6">
+                        <label for="company_id" class="form-label">Company</label>
+                        <select id="company_id" name="company_id" class="form-select" required>
+                            <option value="" selected>Choose...</option>
+                            @foreach ($companies as $company)
+                                <option value="{{$company->id}}">{{$company->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="associates" class="form-label">Associates</label>
+                        <select id="associates" name="associates" class="form-select">
+                            <option selected>Choose...</option>
+                        </select>
+                    </div>
 
                     <div class="col-md-6">
                         <label for="first_name" class="form-label">First Name</label>
@@ -33,6 +56,13 @@
                             @foreach ($countries as $country)
                                 <option value="{{$country->id}}">{{$country->name}}</option>
                             @endforeach
+                        </select>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="state_id" class="form-label">State</label>
+                        <select id="state_id" name="state_id" class="form-select" required>
+                            <option value="" selected>Choose...</option>
                         </select>
                     </div>
 
@@ -76,37 +106,16 @@
                     </div>
                     
 
-                    <div class="col-md-6">
+                    <div class="col-md-3">
                         <label for="hiring_date" class="form-label">Hiring Date</label>
                         <input type="text" class="form-control" placeholder="Select Hiring Date" id="hiring_date" name="hiring_date" required>
                     </div>
 
-                    <div class="col-md-6">
+                    <div class="col-md-3">
                         <label for="leaving_date" class="form-label">Leaving Date</label>
                         <input type="text" class="form-control" placeholder="Select Leaving Date" id="leaving_date" name="leaving_date" required>
                     </div>
 
-                    <div class="col-md-12">
-                        <label for="associates" class="form-label">Associates</label>
-                        <select id="associates" name="associates" class="form-select">
-                            <option selected>Choose...</option>
-                            @foreach ($associates as $associate)
-                                <option value="{{ $associate->id }}">{{ $associate->first_name }} {{ $associate->last_name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-
-                    {{-- <div class="mb-3">
-                        <label for="accident_images" class="form-label">Accident Images</label>
-                        <input class="form-control" type="file" id="accident_images" multiple>
-                    </div>
-
-                    <div class="col-md-12">
-                        <div>
-                            <label for="accident_details" class="form-label">Accident Details</label>
-                            <textarea class="form-control" id="accident_details" rows="3" placeholder="Enter Details..."></textarea>
-                        </div>
-                    </div> --}}
                     @foreach ($duties as $duty)
                         <div class="col-2">
                             <div class="form-check">
@@ -153,10 +162,33 @@
         $('#country_id').change(function () {
             var countryId = $(this).val();
             if (countryId) {
-                var url = "{{ route('country-cities', ['country_id' => ':country_id']) }}";
-                url = url.replace(':country_id', countryId);
+                var stateUrl = "{{ route('country-states', ['country_id' => ':country_id']) }}";
+                stateUrl = stateUrl.replace(':country_id', countryId);
                 $.ajax({
-                    url: url,
+                    url: stateUrl,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function (data) {
+                        $('#state_id').empty();
+                        $('#state_id').append('<option selected>Choose...</option>');
+                        $.each(data, function (key, value) {
+                            $('#state_id').append('<option value="' + value.id + '">' + value.name + '</option>');
+                        });
+                    }
+                });
+            } else {
+                $('#state_id').empty();
+                $('#state_id').append('<option selected>Choose...</option>');
+            }
+        });
+
+        $('#state_id').change(function () {
+            var stateId = $(this).val();
+            if (stateId) {
+                var cityUrl = "{{ route('state-cities', ['state_id' => ':state_id']) }}";
+                cityUrl = cityUrl.replace(':state_id', stateId);
+                $.ajax({
+                    url: cityUrl,
                     type: 'GET',
                     dataType: 'json',
                     success: function (data) {
@@ -170,6 +202,29 @@
             } else {
                 $('#city_id').empty();
                 $('#city_id').append('<option selected>Choose...</option>');
+            }
+        });
+
+        $('#company_id').change(function () {
+            var company_id = $(this).val();
+            if (company_id) {
+                var stateUrl = "{{ route('company-employees', ['company_id' => ':company_id']) }}";
+                stateUrl = stateUrl.replace(':company_id', company_id);
+                $.ajax({
+                    url: stateUrl,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function (data) {
+                        $('#associates').empty();
+                        $('#associates').append('<option selected>Choose...</option>');
+                        $.each(data, function (key, value) {
+                            $('#associates').append('<option value="' + value.id + '">' + value.first_name+ ' ' + value.last_name + '</opt ion>');
+                        });
+                    }
+                });
+            } else {
+                $('#associates').empty();
+                $('#associates').append('<option selected>Choose...</option>');
             }
         });
     });

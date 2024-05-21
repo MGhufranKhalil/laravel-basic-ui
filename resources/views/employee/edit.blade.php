@@ -7,7 +7,13 @@
 @stop
 @section('content')
     <div class="main main-app p-3 p-lg-4">
-
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item"><a href="{{ route('employee')}}">Employee</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Edit</li>
+            </ol>
+        </nav>
         <div class="card">
             <div class="card-body">
                  
@@ -15,6 +21,15 @@
                     @csrf
                     @method('PUT')
 
+                    <div class="col-md-12">
+                        <label for="company_id" class="form-label">Company</label>
+                        <select id="company_id" name="company_id" class="form-select" required>
+                            <option value="" selected>Choose...</option>
+                            @foreach ($companies as $company)
+                                <option value="{{$company->id}}"  @if($company->id == $employee->company_id) selected @endif>{{$company->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
                     <div class="col-md-6">
                         <label for="first_name" class="form-label">First Name</label>
                         <input type="text" class="form-control" placeholder="Enter First name" id="first_name" name="first_name" value="{{$employee->first_name}}" required>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Company;
 use App\Models\Country;
 use App\Models\Employee;
 use App\Models\Option;
@@ -26,6 +27,7 @@ class EmployeeController extends Controller
     public function create(Request $request){
         $data = [];
         $data['countries'] = Country::all();
+        $data['companies'] = Company::all();
         $data['associates'] = Employee::all();
         $data['duties'] = Option::where( 'category', 'duty' )->get();
         $data['jobs'] = Option::where( 'category', 'job' )->get();
@@ -34,6 +36,7 @@ class EmployeeController extends Controller
 
     public function store(Request $request){ 
         $request->validate([
+            'company_id' => 'required',
             'first_name' => 'required',
 			'last_name' => 'required',
 			'address' => 'required',
@@ -59,10 +62,12 @@ class EmployeeController extends Controller
 
 		DB::beginTransaction();
         $employee = Employee::create([
+            'company_id' => $request->company_id,
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
             'address' => $request->address,
             'country_id' => $request->country_id,
+            'state_id' => $request->state_id,
             'city_id' => $request->city_id,
             'zip_code' => $request->zip_code,
             'country_code' => $request->country_code,
@@ -89,6 +94,7 @@ class EmployeeController extends Controller
 
     public function update(Request $request, $id) {
         $request->validate([
+            'company_id' => 'required',
             'first_name' => 'required',
             'last_name' => 'required',
             'address' => 'required',
@@ -116,10 +122,12 @@ class EmployeeController extends Controller
             $imagePath = 'employees/images/' . $imageName;
         }
     
+        $employee->company_id = $request->company_id;
         $employee->first_name = $request->first_name;
         $employee->last_name = $request->last_name;
         $employee->address = $request->address;
         $employee->country_id = $request->country_id;
+        $employee->state_id = $request->state_id;
         $employee->city_id = $request->city_id;
         $employee->zip_code = $request->zip_code;
         $employee->country_code = $request->country_code;
@@ -150,6 +158,7 @@ class EmployeeController extends Controller
 
     public function edit($id) {
         $data['employee'] = Employee::findOrFail($id);
+        $data['companies'] = Company::all();
         $data['countries'] = Country::all();
         $data['associates'] = Employee::all();
         $data['duties'] = Option::where( 'category', 'duty' )->get();

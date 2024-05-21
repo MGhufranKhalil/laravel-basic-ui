@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Company;
+use App\Models\Country;
+
 use DB;
 use Session;
 use Illuminate\Validation\Rule;
@@ -22,6 +24,7 @@ class CompanyController extends Controller
 
     public function create(Request $request){
         $data = [];
+        $data['countries'] = Country::all();
         return view($this->parentView.'.create',$data);
     }
 
@@ -48,8 +51,14 @@ class CompanyController extends Controller
 		DB::beginTransaction();
         Company::create([
             'name' => $request->name,
-            'address' => $request->address,
+            'email' => $request->email,
             'phone' => $request->phone,
+            'website' => $request->website,
+            'address' => $request->address,
+            'country_id' => $request->country_id,
+            'state_id' => $request->state_id,
+            'city_id' => $request->city_id,
+            'zipcode' => $request->zipcode,
             'logo' => $imagePath
         ]);
         DB::commit();
@@ -82,8 +91,14 @@ class CompanyController extends Controller
         }
         $company->update([
             'name' => $request->name,
-            'address' => $request->address,
+            'email' => $request->email,
             'phone' => $request->phone,
+            'website' => $request->website,
+            'address' => $request->address,
+            'country_id' => $request->country_id,
+            'state_id' => $request->state_id,
+            'city_id' => $request->city_id,
+            'zipcode' => $request->zipcode,
             'logo' => $imagePath
         ]);
     
@@ -97,8 +112,9 @@ class CompanyController extends Controller
     }
 
     public function edit($id) {
-        $company = Company::findOrFail($id);
-        return view($this->parentView.'.edit', ['company' => $company]);
+        $data['company'] = Company::findOrFail($id);
+        $data['countries'] = Country::all();
+        return view($this->parentView.'.edit', $data);
     }
 
     public function destroy($id)  {

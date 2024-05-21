@@ -98,6 +98,9 @@ Route::group([ 'middleware' => ['auth']], function () {
         Route::get('/edit/{id}', [RoleController::class, 'edit'])->name('role.edit');
         Route::get('{id}', [RoleController::class, 'destroy'])->name('role.destroy');
     });
-    Route::get('/cities/{country_id}', [HelperController::class, 'getCities'])->name('country-cities');
+    Route::get('/country/{country_id}/states', [HelperController::class, 'getStates'])->name('country-states');
+    Route::get('/state/{state_id}/cities', [HelperController::class, 'getCities'])->name('state-cities');
+    Route::get('/company/{company_id}/employees', [HelperController::class, 'getCompanyEmployees'])->name('company-employees');
+
 });
 

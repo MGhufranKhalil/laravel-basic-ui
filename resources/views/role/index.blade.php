@@ -7,7 +7,13 @@
 @stop
 @section('content')
     <div class="main main-app p-3 p-lg-4">
-
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item"><a href="{{ route('role')}}">Role</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Data</li>
+            </ol>
+        </nav>
         <div class="card">
             <div class="card-body">
 

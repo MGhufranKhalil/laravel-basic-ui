@@ -19,6 +19,11 @@ return new class extends Migration
             $table->string('address');
             $table->string('phone');
             $table->string('email')->nullable();
+            $table->string('website')->nullable();
+            $table->unsignedInteger('country_id');
+            $table->unsignedInteger('state_id');
+            $table->unsignedInteger('city_id');
+            $table->string('zipcode')->nullable();
             $table->string('ntn')->nullable();
             $table->string('logo')->nullable();
             $table->timestamps();
