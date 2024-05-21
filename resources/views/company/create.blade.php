@@ -82,6 +82,7 @@
     
 <script type="text/javascript">
     $(document).ready(function () {
+        $("#phone").inputmask({"mask": "(999) 999-9999"});
         $('#country_id').change(function () {
             var countryId = $(this).val();
             if (countryId) {

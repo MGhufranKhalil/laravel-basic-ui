@@ -30,6 +30,7 @@
     
     
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.8/jquery.inputmask.min.js"  crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <script type="text/javascript">
@@ -49,10 +50,9 @@
     <!-- main-footer -->
     <script src="{{ asset('asset/lib/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('asset/lib/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
-
     <script src="{{ asset('asset/js/script.js') }}"></script>
     <script src="{{ asset('asset/toastr/toastr.min.js') }}"></script>
-
+    
     <script>
         @if (Session::has('success'))
             toastr["success"]('{{ Session::get('success') }}');

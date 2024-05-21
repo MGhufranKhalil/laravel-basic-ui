@@ -77,7 +77,7 @@
                         <input type="text" class="form-control" placeholder="Enter Zipcode" id="zip_code" name="zip_code">
                     </div>
                     <div class="col-md-2">
-                        <label for="phone" class="form-label">Country Code</label>
+                        <label for="country_code" class="form-label">Country Code</label>
                         <select id="country_code" name="country_code" class="form-select" required>
                             <option value="" selected>Choose...</option>
                             @foreach ($countries as $country)
@@ -159,6 +159,8 @@
     $(document).ready(function () {
         $('#hiring_date').datepicker();
         $('#leaving_date').datepicker();
+        $("#phone").inputmask({"mask": "(999) 999-9999"});
+
         $('#country_id').change(function () {
             var countryId = $(this).val();
             if (countryId) {
