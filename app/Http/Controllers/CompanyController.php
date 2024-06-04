@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Company;
 use App\Models\Country;
+use App\Models\User;
 
 use DB;
 use Session;
@@ -50,7 +51,7 @@ class CompanyController extends Controller
         }
 		
 		DB::beginTransaction();
-        Company::create([
+        $company = Company::create([
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,
@@ -62,6 +63,13 @@ class CompanyController extends Controller
             'zipcode' => $request->zipcode,
             'logo' => $imagePath
         ]);
+        $user = User::create([
+            'company_id' => $company->id,
+            'name' => 'Super Admin',
+            'email' => $request->super_admin_email,
+            'password' => bcrypt($request->super_admin_password),
+        ]);
+        $user->assignRole("super-admin");
         DB::commit();
         Session::flash('success', 'Successfully  Create');
         return redirect()->back();

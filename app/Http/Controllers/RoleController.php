@@ -7,15 +7,20 @@ use Illuminate\Http\Request;
 use Session;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
-
+use Auth;
 class RoleController extends Controller
 {
     private $parentView = 'role';
     public function index()
     {
         $data = [];
-        $data['roles'] = Role::all();
+        $user = Auth::user();
+        $emp = Role::query();
 
+        if($user->company_id != 0 ){
+            $emp = $emp->where('company_id', $user->company_id);
+        }
+        $data['roles'] = $emp->get();
         return view($this->parentView . '.index', $data);
     }
 
@@ -29,14 +34,14 @@ class RoleController extends Controller
 
     public function store(Request $request)
     {
-
+        $user = Auth::user();
         $request->validate([
             'role' => 'required|string|max:255',
             'permissions' => 'array',
         ]);
 
         DB::beginTransaction();
-        $role = Role::create(['name' => $request->input('role')]);
+        $role = Role::create(['name' => $request->input('role'), 'company_id' => $user->company_id]);
         if ($request->has('permissions')) {
             $permissions = Permission::whereIn('name', $request->input('permissions'))->get();
             $role->syncPermissions($permissions);

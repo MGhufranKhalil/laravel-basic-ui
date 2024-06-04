@@ -70,7 +70,17 @@
                         <label for="logo" class="form-label">Logo</label>
                         <input class="form-control" type="file" id="logo" name="logo">
                     </div>
-                                
+
+                    <div class="col-md-6">
+                        <label for="super_admin_email" class="form-label">Super Admin Email</label>
+                        <input type="email" class="form-control" placeholder="Enter Company Super Admin Email" id="super_admin_email" name="super_admin_email" value="{{ old('super_admin_email') }}" required>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="super_admin_password" class="form-label">Super Admin Password</label>
+                        <input type="password" class="form-control" placeholder="Enter Company Super Admin Password" id="super_admin_password" name="super_admin_password" required>
+                    </div>
+
                     <div class="col-12">
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </div>

@@ -23,7 +23,13 @@ class EmployeeController extends Controller
         $user = Auth::user();
 
         $data = [];
-        $data['employees'] = Employee::where('company_id', $user->company_id)->get();
+        $emp = Employee::query();
+        if($user->company_id != 0 ){
+            $emp = $emp->where('company_id', $user->company_id);
+        }
+        $emp = $emp->get();
+
+        $data['employees'] = $emp;
         return view($this->parentView.'.index',$data);
     }
 

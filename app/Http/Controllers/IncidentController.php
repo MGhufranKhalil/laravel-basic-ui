@@ -17,8 +17,15 @@ class IncidentController extends Controller
 {
     private $parentView = 'incident';
     public function index(){
+        $user = Auth::user();
         $data = [];
-        $data['incidents'] = EmployeeIncident::all();
+        $emp = EmployeeIncident::query();
+
+        if($user->company_id != 0 ){
+            $emp = $emp->where('company_id', $user->company_id);
+        }
+
+        $data['incidents'] = $emp->get();
         return view($this->parentView.'.index',$data);
     }
 

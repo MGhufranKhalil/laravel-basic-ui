@@ -9,14 +9,20 @@ use DB;
 use Session;
 use Illuminate\Validation\Rule;
 use Spatie\Permission\Models\Role;
+use Auth;
 
 class UserController extends Controller
 {
     private $parentView = 'user';
     public function index(){
         $data = [];
-        $data['users'] = User::all();
-        
+        $user = Auth::user();
+        $emp = User::query();
+
+        if($user->company_id != 0 ){
+            $emp = $emp->where('company_id', $user->company_id);
+        }
+        $data['users'] = $emp->get();
         return view($this->parentView.'.index',$data);
     }
 

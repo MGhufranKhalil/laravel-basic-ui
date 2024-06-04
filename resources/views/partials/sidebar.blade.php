@@ -14,14 +14,16 @@
         </div><!-- nav-group -->
         <div class="nav-group show">
             <ul class="nav nav-sidebar">
-                <li class="nav-item ">
-                    <a href="" class="nav-link has-sub @if (Route::is('company.*') || Route::is('company')) active @endif"><i class="ri-account-circle-line"></i>
-                        <span>Company</span></a>
-                    <nav class="nav nav-sub" @if (Route::is('company.*') || Route::is('company')) style="display: block" @endif>
-                        <a href="{{route('company')}}" class="nav-sub-link @if (Route::is('company')) active @endif">All</a>
-                        <a href="{{route('company.create')}}" class="nav-sub-link  @if (Route::is('company.create')) active @endif">Create</a>
-                    </nav>
-                </li>
+                @if (auth()->user()->hasRole('super-admin') && auth()->user()->company_id == 0)
+                    <li class="nav-item ">
+                        <a href="" class="nav-link has-sub @if (Route::is('company.*') || Route::is('company')) active @endif"><i class="ri-account-circle-line"></i>
+                            <span>Company</span></a>
+                        <nav class="nav nav-sub" @if (Route::is('company.*') || Route::is('company')) style="display: block" @endif>
+                            <a href="{{route('company')}}" class="nav-sub-link @if (Route::is('company')) active @endif">All</a>
+                            <a href="{{route('company.create')}}" class="nav-sub-link  @if (Route::is('company.create')) active @endif">Create</a>
+                        </nav>
+                    </li>
+                @endif
 
                 <li class="nav-item ">
                     <a href="" class="nav-link has-sub @if (Route::is('employee.*') || Route::is('employee')) active @endif"><i class="ri-account-circle-line"></i>
