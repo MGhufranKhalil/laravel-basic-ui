@@ -19,23 +19,23 @@ class RolePermissionSeeder extends Seeder
         app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
 
         // Create permissions
-        Permission::create(['name' => 'create', 'company_id' => 0]);
-        Permission::create(['name' => 'edit', 'company_id' => 0]);
-        Permission::create(['name' => 'update', 'company_id' => 0]);
-        Permission::create(['name' => 'view', 'company_id' => 0]);
-        Permission::create(['name' => 'delete', 'company_id' => 0]);
+        Permission::create(['name' => 'create']);
+        Permission::create(['name' => 'edit']);
+        Permission::create(['name' => 'update']);
+        Permission::create(['name' => 'view']);
+        Permission::create(['name' => 'delete']);
 
 
-        $superAdmin = Role::create(['name' => 'super-admin']);
+        $superAdmin = Role::create(['name' => 'super-admin', 'company_id' => 0]);
         $superAdmin->givePermissionTo(Permission::all());
 
-        $admin = Role::create(['name' => 'admin']);
+        $admin = Role::create(['name' => 'admin', 'company_id' => 0]);
         $admin->givePermissionTo(Permission::all());
 
-        $admin = Role::create(['name' => 'manager']);
+        $admin = Role::create(['name' => 'manager', 'company_id' => 0]);
         $admin->givePermissionTo(Permission::all());
 
-        $employee = Role::create(['name' => 'employee']);
+        $employee = Role::create(['name' => 'employee', 'company_id' => 0]);
         $employee->givePermissionTo(['view']);
 
     }
