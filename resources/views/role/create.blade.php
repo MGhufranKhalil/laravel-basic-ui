@@ -17,7 +17,7 @@
         <div class="card">
             <div class="card-body">
                  
-                <form class="row g-3" action="{{route('role.store')}}" method="POST" >
+                <form class="row g-3" action="{{route('role.store')}}" method="POST"  autocomplete="off">
                     @csrf
                     <div class="col-md-12">
                         <label for="role" class="form-label">Role</label>

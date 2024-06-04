@@ -17,129 +17,121 @@
         <div class="card">
             <div class="card-body">
                  
-                <form class="row g-3" action="{{route('employee.store')}}" method="POST" enctype="multipart/form-data" data-parsley-validate>
+                <form class="row g-3" action="{{ route('employee.store') }}" method="POST" enctype="multipart/form-data" data-parsley-validate autocomplete="off">
                     @csrf
-
-                    <div class="col-md-6">
-                        <label for="company_id" class="form-label">Company</label>
-                        <select id="company_id" name="company_id" class="form-select" required>
-                            <option value="" selected>Choose...</option>
-                            @foreach ($companies as $company)
-                                <option value="{{$company->id}}">{{$company->name}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-
-                    <div class="col-md-6">
+                
+                    <div class="col-md-12">
                         <label for="associates" class="form-label">Associates</label>
                         <select id="associates" name="associates" class="form-select">
                             <option selected>Choose...</option>
+                            <!-- Assuming that associates are dynamically loaded based on the selected company -->
                         </select>
                     </div>
-
+                
                     <div class="col-md-6">
                         <label for="first_name" class="form-label">First Name</label>
-                        <input type="first_name" class="form-control" placeholder="Enter First name" id="first_name" name="first_name" required>
+                        <input type="text" class="form-control" placeholder="Enter First name" id="first_name" name="first_name" value="{{ old('first_name') }}" required>
                     </div>
                     <div class="col-md-6">
                         <label for="last_name" class="form-label">Last Name</label>
-                        <input type="last_name" class="form-control" placeholder="Enter Last name" id="last_name" name="last_name" required>
+                        <input type="text" class="form-control" placeholder="Enter Last name" id="last_name" name="last_name" value="{{ old('last_name') }}" required>
                     </div>
                     <div class="col-12">
                         <label for="address" class="form-label">Address</label>
-                        <input type="text" class="form-control" id="address" placeholder="Enter Address" name="address" required>
+                        <input type="text" class="form-control" id="address" placeholder="Enter Address" name="address" value="{{ old('address') }}" required>
                     </div>
                     <div class="col-md-6">
                         <label for="country_id" class="form-label">Country</label>
                         <select id="country_id" name="country_id" class="form-select" required>
-                            <option value="" selected>Choose...</option>
+                            <option value="" {{ old('country_id') ? '' : 'selected' }}>Choose...</option>
                             @foreach ($countries as $country)
-                                <option value="{{$country->id}}">{{$country->name}}</option>
+                                <option value="{{ $country->id }}" {{ old('country_id') == $country->id ? 'selected' : '' }}>{{ $country->name }}</option>
                             @endforeach
                         </select>
                     </div>
-
+                
                     <div class="col-md-6">
                         <label for="state_id" class="form-label">State</label>
                         <select id="state_id" name="state_id" class="form-select" required>
-                            <option value="" selected>Choose...</option>
+                            <option value="" {{ old('state_id') ? '' : 'selected' }}>Choose...</option>
+                            <!-- Assuming states are dynamically loaded based on the selected country -->
                         </select>
                     </div>
-
+                
                     <div class="col-md-6">
                         <label for="city_id" class="form-label">City</label>
                         <select id="city_id" name="city_id" class="form-select" required>
-                            <option value="" selected>Choose...</option>
+                            <option value="" {{ old('city_id') ? '' : 'selected' }}>Choose...</option>
+                            <!-- Assuming cities are dynamically loaded based on the selected state -->
                         </select>
                     </div>
                     <div class="col-md-6">
                         <label for="zip_code" class="form-label">Zipcode</label>
-                        <input type="text" class="form-control" placeholder="Enter Zipcode" id="zip_code" name="zip_code">
+                        <input type="text" class="form-control" placeholder="Enter Zipcode" id="zip_code" name="zip_code" value="{{ old('zip_code') }}">
                     </div>
                     <div class="col-md-2">
                         <label for="country_code" class="form-label">Country Code</label>
                         <select id="country_code" name="country_code" class="form-select" required>
-                            <option value="" selected>Choose...</option>
+                            <option value="" {{ old('country_code') ? '' : 'selected' }}>Choose...</option>
                             @foreach ($countries as $country)
-                                <option value="{{$country->dial_code}}">{{$country->dial_code}}</option>
+                                <option value="{{ $country->dial_code }}" {{ old('country_code') == $country->dial_code ? 'selected' : '' }}>{{ $country->dial_code }}</option>
                             @endforeach
                         </select>
                     </div>
                     <div class="col-md-4">
                         <label for="phone" class="form-label">Phone</label>
-                        <input type="text" class="form-control" placeholder="Enter Phone" id="phone" name="phone" required>
+                        <input type="text" class="form-control" placeholder="Enter Phone" id="phone" name="phone" value="{{ old('phone') }}" required>
                     </div>
                     
                     <div class="col-md-6">
                         <label for="email" class="form-label">Email</label>
-                        <input type="text" class="form-control" placeholder="Enter Email" id="email" name="email" required>
+                        <input type="text" class="form-control" placeholder="Enter Email" id="email" name="email" value="{{ old('email') }}" required>
                     </div>
-
+                
                     <div class="col-md-6">
                         <label for="job" class="form-label">Job</label>
                         <select id="job" name="job" class="form-select" required>
-                            <option value="" selected>Choose...</option>
+                            <option value="" {{ old('job') ? '' : 'selected' }}>Choose...</option>
                             @foreach ($jobs as $job)
-                                <option value="{{$job->title}}">{{$job->title}}</option>
+                                <option value="{{ $job->title }}" {{ old('job') == $job->title ? 'selected' : '' }}>{{ $job->title }}</option>
                             @endforeach
                         </select>
                     </div>
-                    
-
+                
                     <div class="col-md-3">
                         <label for="hiring_date" class="form-label">Hiring Date</label>
-                        <input type="text" class="form-control" placeholder="Select Hiring Date" id="hiring_date" name="hiring_date" required>
+                        <input type="text" class="form-control" placeholder="Select Hiring Date" id="hiring_date" name="hiring_date" value="{{ old('hiring_date') }}" required>
                     </div>
-
+                
                     <div class="col-md-3">
                         <label for="leaving_date" class="form-label">Leaving Date</label>
-                        <input type="text" class="form-control" placeholder="Select Leaving Date" id="leaving_date" name="leaving_date" required>
+                        <input type="text" class="form-control" placeholder="Select Leaving Date" id="leaving_date" name="leaving_date" value="{{ old('leaving_date') }}" required>
                     </div>
-
+                
                     @foreach ($duties as $duty)
                         <div class="col-2">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="duties{{$loop->iteration}}" name="duties[]" value="{{$duty->title}}">
-                                <label class="form-check-label" for="duties{{$loop->iteration}}" >
-                                    {{$duty->title}}
+                                <input class="form-check-input" type="checkbox" id="duties{{ $loop->iteration }}" name="duties[]" value="{{ $duty->title }}" {{ in_array($duty->title, old('duties', [])) ? 'checked' : '' }}>
+                                <label class="form-check-label" for="duties{{ $loop->iteration }}">
+                                    {{ $duty->title }}
                                 </label>
                             </div>
                         </div>
                     @endforeach
-                     
+                    
                     <div class="col-6">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="status" id="active" value="active" checked>
+                            <input class="form-check-input" type="radio" name="status" id="active" value="active" {{ old('status', 'active') == 'active' ? 'checked' : '' }}>
                             <label class="form-check-label" for="active">
-                              Active
+                                Active
                             </label>
-                          </div>
-                          <div class="form-check">
-                            <input class="form-check-input" type="radio" name="status" id="inactive" value="inactive">
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="status" id="inactive" value="inactive" {{ old('status') == 'inactive' ? 'checked' : '' }}>
                             <label class="form-check-label" for="inactive">
-                              In Active
+                                In Active
                             </label>
-                          </div>
+                        </div>
                     </div>
                     <div class="mb-3">
                         <label for="image" class="form-label">Photo</label>

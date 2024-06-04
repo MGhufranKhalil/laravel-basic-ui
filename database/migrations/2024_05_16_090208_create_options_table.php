@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('options', function (Blueprint $table) {
             $table->id();
+            $table->unsignedInteger('company_id');
             $table->string('category');
             $table->string('title');
             $table->string('value');

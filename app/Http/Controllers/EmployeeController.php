@@ -14,29 +14,34 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
+use Auth;
 
 class EmployeeController extends Controller
 {
     private $parentView = 'employee';
     public function index(){
+        $user = Auth::user();
+
         $data = [];
-        $data['employees'] = Employee::all();
+        $data['employees'] = Employee::where('company_id', $user->company_id)->get();
         return view($this->parentView.'.index',$data);
     }
 
     public function create(Request $request){
+        $user = Auth::user();
+
         $data = [];
         $data['countries'] = Country::all();
-        $data['companies'] = Company::all();
-        $data['associates'] = Employee::all();
+        $data['associates'] = Employee::where('company_id', $user->company_id)->get();
         $data['duties'] = Option::where( 'category', 'duty' )->get();
         $data['jobs'] = Option::where( 'category', 'job' )->get();
         return view($this->parentView.'.create',$data);
     }
 
     public function store(Request $request){ 
+        $user = Auth::user();
         $request->validate([
-            'company_id' => 'required',
+             
             'first_name' => 'required',
 			'last_name' => 'required',
 			'address' => 'required',
@@ -62,7 +67,7 @@ class EmployeeController extends Controller
 
 		DB::beginTransaction();
         $employee = Employee::create([
-            'company_id' => $request->company_id,
+            'company_id' => $user->company_id,
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
             'address' => $request->address,
@@ -94,7 +99,7 @@ class EmployeeController extends Controller
 
     public function update(Request $request, $id) {
         $request->validate([
-            'company_id' => 'required',
+             
             'first_name' => 'required',
             'last_name' => 'required',
             'address' => 'required',
@@ -122,7 +127,6 @@ class EmployeeController extends Controller
             $imagePath = 'employees/images/' . $imageName;
         }
     
-        $employee->company_id = $request->company_id;
         $employee->first_name = $request->first_name;
         $employee->last_name = $request->last_name;
         $employee->address = $request->address;
@@ -157,11 +161,11 @@ class EmployeeController extends Controller
     }
 
     public function edit($id) {
+        $user = Auth::user();
         $data['employee'] = Employee::findOrFail($id);
-        $data['companies'] = Company::all();
         $data['countries'] = Country::all();
-        $data['associates'] = Employee::all();
-        $data['duties'] = Option::where( 'category', 'duty' )->get();
+        $data['associates'] = Employee::where('company_id', $user->company_id)->get();
+        $data['duties'] = Option::where( 'category', 'duty')->get();
         $data['jobs'] = Option::where( 'category', 'job' )->get();
         return view($this->parentView.'.edit',  $data);
     }

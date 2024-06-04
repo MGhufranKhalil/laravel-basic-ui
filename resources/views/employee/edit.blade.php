@@ -20,13 +20,12 @@
                 <form class="row g-3" action="{{route('employee.update',['id'=>$employee->id])}}" method="POST" enctype="multipart/form-data" data-parsley-validate>
                     @csrf
                     @method('PUT')
-
                     <div class="col-md-12">
-                        <label for="company_id" class="form-label">Company</label>
-                        <select id="company_id" name="company_id" class="form-select" required>
-                            <option value="" selected>Choose...</option>
-                            @foreach ($companies as $company)
-                                <option value="{{$company->id}}"  @if($company->id == $employee->company_id) selected @endif>{{$company->name}}</option>
+                        <label for="associates" class="form-label">Associates</label>
+                        <select id="associates" name="associates" class="form-select">
+                            <option selected>Choose...</option>
+                            @foreach ($associates as $associate)
+                                <option value="{{ $associate->id }}"  @if($associate->id == $employee->associate) selected @endif>{{ $associate->first_name }} {{ $associate->last_name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -102,15 +101,7 @@
                         <input type="text" class="form-control" placeholder="Select Leaving Date" id="leaving_date" name="leaving_date"   required>
                     </div>
 
-                    <div class="col-md-12">
-                        <label for="associates" class="form-label">Associates</label>
-                        <select id="associates" name="associates" class="form-select">
-                            <option selected>Choose...</option>
-                            @foreach ($associates as $associate)
-                                <option value="{{ $associate->id }}"  @if($associate->id == $employee->associate) selected @endif>{{ $associate->first_name }} {{ $associate->last_name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
+                    
                     @foreach ($duties as $duty)
                         <div class="col-2">
                             <div class="form-check">

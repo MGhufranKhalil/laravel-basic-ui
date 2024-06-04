@@ -11,6 +11,7 @@ use Str;
 use Session;
 use Illuminate\Validation\Rule;
 use Carbon\Carbon;
+use Auth;
 
 class IncidentController extends Controller
 {
@@ -22,8 +23,10 @@ class IncidentController extends Controller
     }
 
     public function create(Request $request){
+        $user = Auth::user();
+
         $data = [];
-        $data['employees'] = Employee::all();
+        $data['employees'] = Employee::where('company_id', $user->company_id)->get();
         return view($this->parentView.'.create',$data);
     }
 
@@ -38,7 +41,10 @@ class IncidentController extends Controller
         ]);
 		
 		DB::beginTransaction();
+        $user = Auth::user();
+
         $employeeIncident = EmployeeIncident::create([
+            'company_id' => $user->company_id,
             'employee_id' => $request->employee_id,
             'location' => $request->location,
             'date' => Carbon::parse($request->date)->toDateString(),
@@ -54,6 +60,7 @@ class IncidentController extends Controller
                 $imagePath = 'employees/incident_images/' . $imageName;
 
                 EmployeeIncidentImages::create([
+                    'company_id' => $user->company_id,
                     'employee_id' => $request->employee_id,
                     'emp_incident_id' => $employeeIncident->id,
                     'image' => $imagePath,
@@ -92,9 +99,10 @@ class IncidentController extends Controller
     }
 
     public function edit($id) {
+        $user = Auth::user();
         $data = [];
         $data['incident'] = EmployeeIncident::findOrFail($id);
-        $data['employees'] = Employee::all();
+        $data['employees'] = Employee::where('company_id', $user->company_id)->get();
 
         return view($this->parentView.'.edit', $data);
     }

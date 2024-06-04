@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Company;
 use DB;
 use Session;
 use Illuminate\Validation\Rule;
@@ -22,22 +23,21 @@ class UserController extends Controller
     public function create(Request $request){
         $data = [];
         $data['roles'] = Role::all()->pluck('name');
+        $data['companies'] = Company::all();
         return view($this->parentView.'.create',$data);
     }
 
     public function store(Request $request){ 
 
-        $validator = Validator::make($request->all(), [
+        $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
+            'password' => 'required|string|min:6',
         ]);
 
-        if ($validator->fails()) {
-            return back()->withErrors($validator)->withInput();
-        }
 		DB::beginTransaction();
         $user = User::create([
+            'company_id' => $user->company_id,
             'name' => $request->name,
             'email' => $request->email,
             'password' => bcrypt($request->password),

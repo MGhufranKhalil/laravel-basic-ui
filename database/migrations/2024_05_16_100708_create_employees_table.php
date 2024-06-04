@@ -38,6 +38,7 @@ return new class extends Migration
 
         Schema::create('employee_incidents', function (Blueprint $table) {
             $table->id();
+            $table->unsignedInteger('company_id');
             $table->unsignedInteger('employee_id');
             $table->string('location');
             $table->date('date');
@@ -48,6 +49,7 @@ return new class extends Migration
 
         Schema::create('employee_incident_images', function (Blueprint $table) {
             $table->id();
+            $table->unsignedInteger('company_id');
             $table->unsignedInteger('employee_id');
             $table->unsignedInteger('emp_incident_id');
             $table->string('image');

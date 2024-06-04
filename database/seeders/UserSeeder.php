@@ -16,6 +16,7 @@ class UserSeeder extends Seeder
     public function run()
     {
         $superadmin = User::create([
+            'company_id' => 0,
             'name' => 'Super Admin',
             'email' => 'superadmin@mgk.com',
             'password' => bcrypt('password123'),
@@ -23,6 +24,7 @@ class UserSeeder extends Seeder
         $superadmin->assignRole('super-admin');
 
         $admin = User::create([
+            'company_id' => 0,
             'name' => 'Admin',
             'email' => 'admin@mgk.com',
             'password' => bcrypt('password123'),
@@ -30,6 +32,7 @@ class UserSeeder extends Seeder
         $admin->assignRole('admin');
 
         $manager = User::create([
+            'company_id' => 0,
             'name' => 'Manager',
             'email' => 'manager@mgk.com',
             'password' => bcrypt('password123'),
@@ -37,6 +40,7 @@ class UserSeeder extends Seeder
         $manager->assignRole('manager');
 
         $employee = User::create([
+            'company_id' => 0,
             'name' => 'employee',
             'email' => 'employee@mgk.com',
             'password' => bcrypt('password123'),

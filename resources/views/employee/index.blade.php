@@ -41,7 +41,7 @@
                                 <td>{{ \Carbon\Carbon::parse($employee->hiring_date)->format('m/d/Y') }}</td>
                                 <td>{{ \Carbon\Carbon::parse($employee->leaving_date)->format('m/d/Y') }}</td>
                                 <td>{{ $employee->job }}</td>
-                                <td>{{ implode(',',unserialize($employee->duties)) }}</td>
+                                <td>{{ is_array(unserialize($employee->duties)) ? implode(', ',unserialize($employee->duties)) : 'N/A' }}</td>
                                 <td>
                                     @if (auth()->user()->can('edit'))
                                         <a href="{{ route('employee.edit', ['id' => $employee->id]) }}" class="btn btn-warning btn-sm">Edit</a>

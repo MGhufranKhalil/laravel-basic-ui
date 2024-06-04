@@ -17,31 +17,31 @@
         <div class="card">
             <div class="card-body">
                  
-                <form class="row g-3" action="{{route('company.store')}}" method="POST" enctype="multipart/form-data">
+                <form class="row g-3" action="{{ route('company.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
-                    
+                
                     <div class="col-md-6">
-                        <label for="first_name" class="form-label">Name</label>
-                        <input type="first_name" class="form-control" placeholder="Enter Name" id="name" name="name">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" class="form-control" placeholder="Enter Name" id="name" name="name" value="{{ old('name') }}">
                     </div>
                     <div class="col-md-6">
-                        <label for="first_name" class="form-label">Phone</label>
-                        <input type="first_name" class="form-control" placeholder="Enter Phone" id="phone" name="phone">
+                        <label for="phone" class="form-label">Phone</label>
+                        <input type="text" class="form-control" placeholder="Enter Phone" id="phone" name="phone" value="{{ old('phone') }}">
                     </div>
                     <div class="col-md-6">
                         <label for="email" class="form-label">Email</label>
-                        <input type="text" class="form-control" placeholder="Enter Email" id="email" name="email" required>
+                        <input type="text" class="form-control" placeholder="Enter Email" id="email" name="email" value="{{ old('email') }}" required>
                     </div>
                     <div class="col-md-6">
                         <label for="website" class="form-label">Website</label>
-                        <input type="text" class="form-control" placeholder="Enter Email" id="website" name="website" required>
+                        <input type="text" class="form-control" placeholder="Enter Website" id="website" name="website" value="{{ old('website') }}" required>
                     </div>
                     <div class="col-md-6">
                         <label for="country_id" class="form-label">Country</label>
                         <select id="country_id" name="country_id" class="form-select" required>
-                            <option value="" selected>Choose...</option>
+                            <option value="" {{ old('country_id') ? '' : 'selected' }}>Choose...</option>
                             @foreach ($countries as $country)
-                                <option value="{{$country->id}}">{{$country->name}}</option>
+                                <option value="{{ $country->id }}" {{ old('country_id') == $country->id ? 'selected' : '' }}>{{ $country->name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -59,11 +59,11 @@
                     </div>
                     <div class="col-md-6">
                         <label for="zip_code" class="form-label">Zipcode</label>
-                        <input type="text" class="form-control" placeholder="Enter Zipcode" id="zip_code" name="zip_code">
+                        <input type="text" class="form-control" placeholder="Enter Zipcode" id="zip_code" name="zip_code" value="{{ old('zip_code') }}">
                     </div>
                     <div class="col-md-12">
-                        <label for="last_name" class="form-label">Address</label>
-                        <input type="last_name" class="form-control" placeholder="Enter Address" id="value" name="address">
+                        <label for="address" class="form-label">Address</label>
+                        <input type="text" class="form-control" placeholder="Enter Address" id="address" name="address" value="{{ old('address') }}">
                     </div>
                     
                     <div class="mb-3">
@@ -75,6 +75,7 @@
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </div>
                 </form>
+                
             </div>
         </div>
 

@@ -17,7 +17,7 @@
         <div class="card">
             <div class="card-body">
                  
-                <form class="row g-3" action="{{route('option.store')}}" method="POST" >
+                <form class="row g-3" action="{{route('option.store')}}" method="POST"  autocomplete="off">
                     @csrf
 
                     <div class="col-md-6">
