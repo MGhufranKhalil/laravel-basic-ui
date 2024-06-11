@@ -19,22 +19,13 @@
                  
                 <form class="row g-3" action="{{route('user.store')}}" method="POST"  autocomplete="off">
                     @csrf
-                    <div class="col-md-6">
-                        <label for="company_id" class="form-label">Company</label>
-                        <select id="company_id" name="company_id" class="form-select" required>
-                            <option value="" selected>Choose...</option>
-                            @foreach ($companies as $company)
-                                <option value="{{$company->id}}">{{$company->name}}</option>
-                            @endforeach
-                        </select>
-                    </div>
 
                     <div class="col-md-6">
                         <label for="role" class="form-label">Role</label>
                         <select id="role" name="role" class="form-select">
                             <option selected>Choose...</option>
                             @foreach ($roles as $role)
-                                <option value="job">{{$role}}</option>
+                                <option value="{{$role}}">{{$role}}</option>
                             @endforeach
                         </select>
                     </div>

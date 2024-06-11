@@ -34,6 +34,7 @@ class UserController extends Controller
     }
 
     public function store(Request $request){ 
+        $user = Auth::user();
 
         $request->validate([
             'name' => 'required|string|max:255',
@@ -42,13 +43,13 @@ class UserController extends Controller
         ]);
 
 		DB::beginTransaction();
-        $user = User::create([
+        $createdUser = User::create([
             'company_id' => $user->company_id,
             'name' => $request->name,
             'email' => $request->email,
             'password' => bcrypt($request->password),
         ]);
-        $user->assignRole($request->role);
+        $createdUser->assignRole($request->role);
 
         DB::commit();
         Session::flash('success', 'Successfully  Create');
