@@ -19,6 +19,9 @@
                 <div class="row g-3">
                     <div class="col-md-6">
                         <h3>{{ $employee->first_name }} {{ $employee->last_name }} </h3>
+                        @if (auth()->user()->hasRole('super-admin') && auth()->user()->company_id == 0)
+                            <h5>{{ $employee->company->name ?? ' - ' }}</h5>
+                        @endif
                         <h5>Address: {{ $employee->address }} </h5>
                         <h5>email: {{ $employee->email }} </h5>
                         <h5>Country: {{ $employee->country->name }} </h5>

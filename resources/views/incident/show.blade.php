@@ -17,6 +17,9 @@
         <div class="card">
             <div class="card-body">
                 <div class="col-md-6">
+                    @if (auth()->user()->hasRole('super-admin') && auth()->user()->company_id == 0)
+                        <h5>{{ $incident->company->name ?? ' - ' }}</h5>
+                    @endif
                     <h5>Employee: {{ $incident->employee->name }}</h5>
                     <h5>Location: {{ $incident->location }}</h5>
                     <h5>Date: {{ \Carbon\Carbon::parse($incident->date)->format('m/d/Y') }}</h5>

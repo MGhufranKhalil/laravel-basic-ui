@@ -17,6 +17,9 @@
         <div class="card">
             <div class="card-body">
                 <div>
+                    @if (auth()->user()->hasRole('super-admin') && auth()->user()->company_id == 0)
+                        <h5>{{ $user->company->name ?? ' - ' }}</h5>
+                    @endif
                     <h5>Name: {{ $user->name }}</h5>
                     <h5>Email: {{ $user->email }}</h5>
                     <h5>Role: {{ $user->getRoleNames() }}</h5>
