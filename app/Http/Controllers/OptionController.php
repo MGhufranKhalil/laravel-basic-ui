@@ -13,7 +13,7 @@ class OptionController extends Controller
     private $parentView = 'option';
     public function index(){
         $data = [];
-        $data['options'] = Option::all();
+        $data['options'] = Option::paginate(30);
         return view($this->parentView.'.index',$data);
     }
 

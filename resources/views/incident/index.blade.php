@@ -21,6 +21,9 @@
                     <thead>
                         <tr>
                             <th scope="col">ID</th>
+                            @if (auth()->user()->hasRole('super-admin') && auth()->user()->company_id == 0)
+                                <th scope="col">Company</th>
+                            @endif
                             <th scope="col">Employee Name</th>
                             <th scope="col">Location</th>
                             <th scope="col">Date</th>
@@ -32,6 +35,9 @@
                         @foreach ($incidents as $incident)
                             <tr>
                                 <td>{{ $incident->id }}</td>
+                                @if (auth()->user()->hasRole('super-admin') && auth()->user()->company_id == 0)
+                                    <td>{{ $incident->company->name ?? ' - ' }}</td>
+                                @endif
                                 <td>{{ $incident->employee->first_name }} {{ $incident->employee->last_name }} </td>
                                 <td>{{ $incident->location }}</td>
                                 <td>{{ \Carbon\Carbon::parse($incident->date)->format('m/d/Y') }}</td>

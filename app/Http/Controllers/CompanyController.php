@@ -20,7 +20,7 @@ class CompanyController extends Controller
 
     public function index(){
         $data = [];
-        $data['companies'] = Company::all();
+        $data['companies'] = Company::paginate(30);
         return view($this->parentView.'.index',$data);
     }
 

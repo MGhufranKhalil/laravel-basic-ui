@@ -17,12 +17,14 @@ class UserController extends Controller
     public function index(){
         $data = [];
         $user = Auth::user();
-        $emp = User::query();
+        $emp = User::with('company')->orderBy('created_at', 'desc');
 
         if($user->company_id != 0 ){
             $emp = $emp->where('company_id', $user->company_id);
         }
-        $data['users'] = $emp->get();
+
+        $data['users'] = $emp->paginate(30);
+
         return view($this->parentView.'.index',$data);
     }
 

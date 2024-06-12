@@ -25,7 +25,7 @@ class IncidentController extends Controller
             $emp = $emp->where('company_id', $user->company_id);
         }
 
-        $data['incidents'] = $emp->get();
+        $data['incidents'] = $emp->paginate(30);
         return view($this->parentView.'.index',$data);
     }
 

@@ -21,6 +21,9 @@
                     <thead>
                         <tr>
                             <th scope="col">ID</th>
+                            @if (auth()->user()->hasRole('super-admin') && auth()->user()->company_id == 0)
+                                <th scope="col">Company</th>
+                            @endif
                             <th scope="col">Name</th>
                             <th scope="col">Country</th>
                             <th scope="col">City</th>
@@ -35,6 +38,9 @@
                         @foreach ($employees as $employee)
                             <tr>
                                 <td>{{$employee->id}}</td>
+                                @if (auth()->user()->hasRole('super-admin') && auth()->user()->company_id == 0)
+                                    <td>{{ $employee->company->name ?? ' - ' }}</td>
+                                @endif
                                 <td>{{ $employee->first_name }} {{ $employee->last_name }}</td>
                                 <td>{{ $employee->country->name }}</td>
                                 <td>{{ $employee->city->name }}</td>

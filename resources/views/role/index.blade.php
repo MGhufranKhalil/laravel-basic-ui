@@ -21,6 +21,9 @@
                     <thead>
                         <tr>
                             <th scope="col">ID</th>
+                            @if (auth()->user()->hasRole('super-admin') && auth()->user()->company_id == 0)
+                                <th scope="col">Company</th>
+                            @endif
                             <th scope="col">Name</th>
                             <th scope="col">Permissions</th>
                             <th scope="col">Action</th>
@@ -30,6 +33,9 @@
                         @foreach ($roles as $role)
                             <tr>
                                 <td>{{ $role->id }}</td>
+                                @if (auth()->user()->hasRole('super-admin') && auth()->user()->company_id == 0)
+                                    <td>{{ $role->company->name ?? ' - ' }}</td>
+                                @endif
                                 <td>{{ $role->name }} </td>
                                 <td>{{ $role->getAllPermissions()->pluck('name') }} </td>
                                 <td>

@@ -27,7 +27,7 @@ class EmployeeController extends Controller
         if($user->company_id != 0 ){
             $emp = $emp->where('company_id', $user->company_id);
         }
-        $emp = $emp->get();
+        $emp = $emp->paginate(30);
 
         $data['employees'] = $emp;
         return view($this->parentView.'.index',$data);

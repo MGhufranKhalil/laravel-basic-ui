@@ -20,7 +20,7 @@ class RoleController extends Controller
         if($user->company_id != 0 ){
             $emp = $emp->where('company_id', $user->company_id);
         }
-        $data['roles'] = $emp->get();
+        $data['roles'] = $emp->paginate(30);
         return view($this->parentView . '.index', $data);
     }
 
