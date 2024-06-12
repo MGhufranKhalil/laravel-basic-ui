@@ -16,12 +16,14 @@
         </nav>
         <div class="card">
             <div class="card-body">
-                <div>
+                <div class="col-md-6">
                     <h5>Employee: {{ $incident->employee->name }}</h5>
                     <h5>Location: {{ $incident->location }}</h5>
                     <h5>Date: {{ \Carbon\Carbon::parse($incident->date)->format('m/d/Y') }}</h5>
                     <h5>Time: {{ $incident->time }}</h5>
                     <h5>Description: {{ $incident->details }}</h5>
+                </div>
+                <div class="col-md-6 float-right">
                     @foreach ($incident->images as $image)
                         <a href="{{ asset($image->image) }}"  target="_blank">
                             <img src="{{ asset($image->image) }}" class="img-fluid" width="100">
