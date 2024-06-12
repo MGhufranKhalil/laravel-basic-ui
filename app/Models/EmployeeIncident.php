@@ -14,6 +14,11 @@ class EmployeeIncident extends Model
     {
         return $this->belongsTo(Employee::class);
     }
+    
+    public function company()
+    {
+        return $this->belongsTo(Company::class);
+    }
 
     public function images()
     {
